@@ -1,18 +1,13 @@
-<!DOCTYPE html>
-<html>
-    
-    {% include "videos/header.html" %}
-    
-    {% include "videos/navigation.html" %}
+{% extends "videos/layout.html" %}
 
-    <body>
-        {% if user.is_authenticated %}
-            Hello {{ user }}
-        {% else %}
-            Hello, vous n'êtes pas authentifié....
-        {% endif %}
-    </body>
-    
-    {% include "videos/footer.html" %}
+{% block page_title %}
+    Welcome
+{% endblock %}
 
-</html>
+{% block content %}
+    {% if user.is_authenticated %}
+        Hello {{ user }}
+    {% else %}
+        Hello, vous n'êtes pas authentifié....
+    {% endif %}
+{% endblock %}

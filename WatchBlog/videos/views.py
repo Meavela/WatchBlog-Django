@@ -21,3 +21,18 @@ def create(request):
     template = loader.get_template('videos/create.html')
     context = {}
     return HttpResponse(template.render(context, request))
+
+def signin(request):
+    template = loader.get_template('videos/signin.html')
+    context = {}
+    return HttpResponse(template.render(context, request))
+
+def login(request):
+    template = loader.get_template('videos/login.html')
+    context = {}
+    return HttpResponse(template.render(context, request))
+
+def logout(request):
+    template = loader.get_template('videos/logout.html')
+    context = {}
+    return HttpResponse(template.render(context, request))

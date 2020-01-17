@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    
+    {% include "videos/header.html" %}
+    
+    {% include "videos/navigation.html" %}
+
+    <body>
+        <h3>{% block page_title %}{% endblock %}</h3>
+
+        {% block content %}{% endblock %}
+    </body>
+    
+    {% include "videos/footer.html" %}
+
+</html>
