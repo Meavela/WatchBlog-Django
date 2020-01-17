@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>WatchBlog</title>
+    </head>
+    <body>
+        {% if user.is_authenticated %}
+            Hello {{ user }}
+        {% else %}
+            Hello, vous n'êtes pas authentifié....
+        {% endif %}
+    </body>
+</html>
