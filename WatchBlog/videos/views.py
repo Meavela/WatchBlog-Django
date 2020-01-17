@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate
 from django.template import loader
+from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
+from .forms import VideoModelForm
 
 # Create your views here.
 def index(request):
@@ -18,9 +20,17 @@ def list(request):
     return HttpResponse(template.render(context, request))
 
 def create(request):
-    template = loader.get_template('videos/create.html')
-    context = {}
-    return HttpResponse(template.render(context, request))
+    if request.method == 'POST':
+        form = VideoModelForm(request.POST)
+
+        if form.is_valid:
+            form.save()
+            
+            return HttpResponseRedirect(reverse('list'))
+    else:
+        form = VideoModelForm()
+    
+    return render(request, 'videos/create.html', {'form':form})
 
 def signin(request):
     template = loader.get_template('videos/signin.html')
