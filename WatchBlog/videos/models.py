@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 
+User = get_user_model()
+
 # Create your models here.
 class Video(models.Model):
     title = models.CharField(max_length=100)
@@ -11,7 +13,7 @@ class Video(models.Model):
 
     TYPES_VIDEOS = [
         ('Film', 'Film'),
-        ('Serie', 'Serie');
+        ('Serie', 'Serie')
     ]
     types_videos = models.CharField(
         max_length = 10,
