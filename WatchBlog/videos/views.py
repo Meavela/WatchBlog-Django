@@ -1,9 +1,10 @@
 from django.shortcuts import render
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, logout, login
 from django.template import loader
 from django.urls import reverse
+from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
-from .forms import VideoModelForm
+from .forms import VideoModelForm, UserModelForm, LoginForm
 from .models import Video
 
 # Create your views here.
@@ -26,7 +27,7 @@ def create(request):
     if request.method == 'POST':
         form = VideoModelForm(request.POST)
 
-        if form.is_valid:
+        if form.is_valid():
             form.save()
             
             return HttpResponseRedirect(reverse('list'))
@@ -36,16 +37,45 @@ def create(request):
     return render(request, 'videos/create.html', {'form':form})
 
 def signin(request):
-    template = loader.get_template('videos/signin.html')
-    context = {}
-    return HttpResponse(template.render(context, request))
+    if request.method == 'POST':
+        form = UserModelForm(request.POST)
 
-def login(request):
-    template = loader.get_template('videos/login.html')
-    context = {}
-    return HttpResponse(template.render(context, request))
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            email = form.cleaned_data['email']
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
+            user = User.objects.create_user(username,email,password)
+            user.last_name = last_name
+            user.first_name = first_name
+            user.save()
 
-def logout(request):
-    template = loader.get_template('videos/logout.html')
-    context = {}
-    return HttpResponse(template.render(context, request))
+            return HttpResponseRedirect(reverse('login'))
+
+    else:
+        form = UserModelForm()
+    
+    return render(request, 'videos/signin.html', {'form':form})
+
+def login_view(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(username=username,password=password)
+            if user is not None:
+                login(request,user)
+
+                return HttpResponseRedirect(reverse('index'))
+
+    else:
+        form = LoginForm()
+    
+    return render(request, 'videos/login.html', {'form':form})
+
+def logout_view(request):
+    logout(request)
+
+    return HttpResponseRedirect(reverse('index'))
