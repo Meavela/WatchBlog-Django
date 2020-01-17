@@ -1,9 +1,38 @@
 {% extends "videos/layout.html" %}
 
 {% block page_title %}
-    List
+    List of videos
 {% endblock %}
 
 {% block content %}
-
+<table style="width: 90%;margin: auto;text-align: center;" class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Rate</th>
+            <th scope="col">User</th>
+            <th scope="col">Date</th>
+            <th scope="col">Type</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for video in videos %}
+            <tr>
+                <td>{{ video.title }}</td>
+                <td>{{ video.description }}</td>
+                <td>{{ video.rate }}</td>
+                <td>{{ video.user }}</td>
+                <td>{{ video.date }}</td>
+                <td>{{ video.types_videos }}</td>
+                <td>
+                    <a href="#">Detail | </a>
+                    <a href="#">Edit | </a>
+                    <a href="#">Delete | </a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+  </table> 
 {% endblock %}

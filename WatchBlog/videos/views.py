@@ -4,6 +4,7 @@ from django.template import loader
 from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import VideoModelForm
+from .models import Video
 
 # Create your views here.
 def index(request):
@@ -16,7 +17,9 @@ def index(request):
 
 def list(request):
     template = loader.get_template('videos/list.html')
-    context = {}
+    all_entries = Video.objects.all()    
+    context = {'videos':all_entries}
+
     return HttpResponse(template.render(context, request))
 
 def create(request):
