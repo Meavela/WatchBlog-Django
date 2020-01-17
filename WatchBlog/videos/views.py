@@ -11,3 +11,13 @@ def index(request):
     print(request.user.is_authenticated)
     print(request.user)
     return HttpResponse(template.render(context, request))
+
+def list(request):
+    template = loader.get_template('videos/list.html')
+    context = {}
+    return HttpResponse(template.render(context, request))
+
+def create(request):
+    template = loader.get_template('videos/create.html')
+    context = {}
+    return HttpResponse(template.render(context, request))
