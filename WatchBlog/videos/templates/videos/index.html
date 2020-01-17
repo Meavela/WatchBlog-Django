@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>WatchBlog</title>
-    </head>
+    
+    {% include "videos/header.html" %}
+    
+    {% include "videos/navigation.html" %}
+
     <body>
         {% if user.is_authenticated %}
             Hello {{ user }}
@@ -11,4 +12,7 @@
             Hello, vous n'êtes pas authentifié....
         {% endif %}
     </body>
+    
+    {% include "videos/footer.html" %}
+
 </html>
