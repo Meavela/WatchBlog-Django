@@ -6,12 +6,16 @@
     {% include "videos/navigation.html" %}
 
     <body>
-        <br>
-        <h1 style="text-align: center;text-decoration: underline;">{% block page_title %}{% endblock %}</h1>
-        <br>
-        {% block content %}{% endblock %}
+        <div style="position: relative;min-height: 100vh;">
+            <div style="padding-bottom: 2.5rem;">
+                <br>
+                <h1 style="text-align: center;margin-top: 50px;text-decoration: underline;">{% block page_title %}{% endblock %}</h1>
+                <br>
+                {% block content %}{% endblock %}    
+            </div>
+            
+            {% include "videos/footer.html" %}
+        </div>
+        
     </body>
-    
-    {% include "videos/footer.html" %}
-
 </html>

@@ -68,7 +68,7 @@ def login_view(request):
             if user is not None:
                 login(request,user)
 
-                return HttpResponseRedirect(reverse('index'))
+                return HttpResponseRedirect(reverse('list'))
 
     else:
         form = LoginForm()
@@ -78,4 +78,19 @@ def login_view(request):
 def logout_view(request):
     logout(request)
 
-    return HttpResponseRedirect(reverse('index'))
+    return HttpResponseRedirect(reverse('list'))
+
+def detail(request, video_id):
+    try:
+        video = Video.objects.get(pk=video_id)
+    except Video.DoesNotExist:
+        raise Http404
+    template = loader.get_template('videos/detail.html')
+    context = {'video': video}
+    return HttpResponse(template.render(context, request))
+
+def edit(request, video_id):
+    pass
+
+def delete(request, video_id):
+    pass

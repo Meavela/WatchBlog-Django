@@ -27,9 +27,11 @@
                 <td>{{ video.date }}</td>
                 <td>{{ video.types_videos }}</td>
                 <td>
-                    <a href="#">Detail | </a>
-                    <a href="#">Edit | </a>
-                    <a href="#">Delete | </a>
+                    <a href="{% url 'detail' video_id=video.id %}">Detail </a>
+                    |
+                    <a href="{% url 'edit' video_id=video.id %}">Edit </a>
+                    |
+                    <a href="{% url 'delete' video_id=video.id %}">Delete</a>
                 </td>
             </tr>
         {% endfor %}

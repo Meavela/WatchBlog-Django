@@ -15,8 +15,29 @@ class Video(models.Model):
         ('Film', 'Film'),
         ('Serie', 'Serie')
     ]
-    types_videos = models.CharField(
+    type_video = models.CharField(
         max_length = 10,
         choices = TYPES_VIDEOS,
         default = 'Film'
+    )
+
+    CATEGORIES_VIDEOS = [
+        ('Animation', 'Animation'),
+        ('Biopic', 'Biopic'),
+        ('Comédie', 'Comédie'),
+        ('Documentaire', 'Documentaire'),
+        ('Drame', 'Drame'),
+        ('Fantastique', 'Fantastique'),
+        ('Science-fiction', 'Science-fiction'),
+        ('Horreur', 'Horreur'),
+        ('Guerre', 'Guerre'),
+        ('Histoire', 'Biopic'),
+        ('Policier', 'Policier'),
+        ('Thriller', 'Thriller'),
+        ('Aventure', 'Aventure')
+    ]
+    category_video = models.CharField(
+        max_length = 50,
+        choices = CATEGORIES_VIDEOS,
+        default = 'Animation'
     )

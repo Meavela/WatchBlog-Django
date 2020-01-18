@@ -1,9 +1,28 @@
 {% extends "videos/layout.html" %}
+{% load fontawesome %}
+{% load static %}
 
 {% block page_title %}
-    Detail
+    
 {% endblock %}
 
 {% block content %}
+<div>
+    <div class="card" style="width: 50%;margin: auto;">
+        <img src="../../static/images/default.png" class="card-img-top" alt="image" style="height: 20em;">
+        <div class="card-body">
+            <h5 class="card-title">{{ video.title }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{% fontawesome_icon 'calendar' %} {{ video.date }}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">{% fontawesome_icon 'star' %} {{ video.rate }}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">{% fontawesome_icon 'film' %} {{ video.type_video }}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">{% fontawesome_icon 'list' %} {{ video.category_video }}</h6>
+            <p class="card-text">{{ video.description }}</p>
+            <div>
+                <a href="{% url 'edit' video_id=video.id %}" class="btn btn-primary">Edit</a>
+                <a href="{% url 'delete' video_id=video.id %}" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
