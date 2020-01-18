@@ -68,7 +68,7 @@ def login_view(request):
             if user is not None:
                 login(request,user)
 
-                return HttpResponseRedirect(reverse('list'))
+                return HttpResponseRedirect(reverse('index'))
 
     else:
         form = LoginForm()
@@ -78,7 +78,7 @@ def login_view(request):
 def logout_view(request):
     logout(request)
 
-    return HttpResponseRedirect(reverse('list'))
+    return HttpResponseRedirect(reverse('index'))
 
 def detail(request, video_id):
     try:
@@ -90,7 +90,22 @@ def detail(request, video_id):
     return HttpResponse(template.render(context, request))
 
 def edit(request, video_id):
-    pass
+    try:
+        video = Video.objects.get(pk=video_id)
+    except Video.DoesNotExist:
+        raise Http404
+
+    if request.method == 'POST':
+        form = VideoModelForm(request.POST, instance=video)
+
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('list'))
+    
+    else:
+        form = VideoModelForm(instance=video)
+    
+    return render(request, 'videos/edit.html', {'form':form})
 
 def delete(request, video_id):
     pass
