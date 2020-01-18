@@ -5,10 +5,14 @@
 {% endblock %}
 
 {% block content %}
-    <form method="POST">
-        {% csrf_token %}
-        {{ form }}
-        <br>
-        <input type="submit" class="btn btn-primary" value="Submit">
-    </form>
+    {% if request.user.is_authenticated %}
+        <form method="POST">
+            {% csrf_token %}
+            {{ form }}
+            <br>
+            <input type="submit" class="btn btn-primary" value="Submit">
+        </form>
+    {% else %}
+        {% include "videos/notconnected.html" %}
+    {% endif %}
 {% endblock %}

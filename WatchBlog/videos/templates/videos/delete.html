@@ -5,9 +5,14 @@
 {% endblock %}
 
 {% block content %}
-<form method="POST">    
-    {% csrf_token %}
-    <p>Delete this video ? {{ video.title }}</p>
-    <input type="submit" value="Submit">
-</form>
+
+{% if request.user.is_authenticated %}
+    <form method="POST">    
+        {% csrf_token %}
+        <p>Delete this video ? {{ video.title }}</p>
+        <input type="submit" value="Submit">
+    </form>
+    {% else %}
+        {% include "videos/notconnected.html" %}
+    {% endif %}
 {% endblock %}
