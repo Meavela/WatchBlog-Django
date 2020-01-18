@@ -129,7 +129,7 @@ dmypy.json
 .pyre/
 
 # exclude everything
-users_images/*
+**/users_images/*
 
 # exception to the rule
-!users_images/.gitkeep 
+!*.gitkeep 
