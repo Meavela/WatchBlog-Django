@@ -108,4 +108,14 @@ def edit(request, video_id):
     return render(request, 'videos/edit.html', {'form':form})
 
 def delete(request, video_id):
-    pass
+    try:
+        video = Video.objects.get(pk=video_id)
+    except Video.DoesNotExist:
+        raise Http404
+    template = loader.get_template('videos/delete.html')
+    context = {'video': video}
+    if request.method == 'POST':
+        video.delete()
+        return HttpResponseRedirect(reverse('list'))
+
+    return HttpResponse(template.render(context, request))

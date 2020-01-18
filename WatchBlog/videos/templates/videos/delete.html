@@ -5,5 +5,9 @@
 {% endblock %}
 
 {% block content %}
-
+<form method="POST">    
+    {% csrf_token %}
+    <p>Delete this video ? {{ video.title }}</p>
+    <input type="submit" value="Submit">
+</form>
 {% endblock %}
