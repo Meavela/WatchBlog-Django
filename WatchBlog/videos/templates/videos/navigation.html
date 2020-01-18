@@ -4,22 +4,27 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav mr-auto" style="width: 100%;">
         <li class="nav-item active">
           <a class="nav-link" href="{% url 'list' %}">List <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'create' %}">Create</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'signin' %}">SignIn</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'login' %}">LogIn</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'logout' %}">LogOut</a>
-        </li>
+      </ul>
+      <ul class="navbar-nav">
+        {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">LogOut</a>
+          </li>       
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'signin' %}">SignIn</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">LogIn</a>
+          </li>
+        {% endif %}
       </ul>
     </div>
 </nav>
