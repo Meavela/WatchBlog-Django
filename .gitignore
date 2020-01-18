@@ -128,4 +128,8 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-users_images/
+# exclude everything
+users_images/*
+
+# exception to the rule
+!users_images/.gitkeep 
