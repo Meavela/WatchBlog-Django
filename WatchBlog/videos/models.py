@@ -41,3 +41,6 @@ class Video(models.Model):
         choices = CATEGORIES_VIDEOS,
         default = 'Animation'
     )
+
+    def __str__(self):
+        return self.title
