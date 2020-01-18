@@ -11,7 +11,15 @@
         <li class="nav-item">
           <a class="nav-link" href="{% url 'create' %}">Create</a>
         </li>
+        <div style="text-align: center;width: 100%;color: blue;margin: auto;text-decoration: underline;">
+          {% if user.is_authenticated %}
+            Hello {{ user }}
+          {% else %}
+            Vous n'êtes pas authentifié....
+          {% endif %}
+            </div>
       </ul>
+      
       <ul class="navbar-nav">
         {% if user.is_authenticated %}
           <li class="nav-item">

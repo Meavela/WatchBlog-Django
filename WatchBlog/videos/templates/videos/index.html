@@ -1,13 +1,11 @@
 {% extends "videos/layout.html" %}
 
 {% block page_title %}
-    Welcome
+    
 {% endblock %}
 
 {% block content %}
-    {% if user.is_authenticated %}
-        Hello {{ user }}
-    {% else %}
-        Hello, vous n'êtes pas authentifié....
-    {% endif %}
+<div style="display: grid;height: 100%;">
+    <img style="max-width: 100%;max-height: 100vh;margin: auto;" src="../../static/images/logo.png" alt="logo">
+</div>
 {% endblock %}
