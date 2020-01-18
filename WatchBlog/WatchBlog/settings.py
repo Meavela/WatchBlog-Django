@@ -24,6 +24,8 @@ SECRET_KEY = '^rig-wy8l4jf5&eh@)u1a@vpuml+-f+o=i5qt(r6h+%%pi-n=l'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+MEDIA_ROOT = os.path.join(BASE_DIR,'videos/static/images/users_images')
+
 ALLOWED_HOSTS = []
 
 # Application definition

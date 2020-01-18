@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.core.validators import FileExtensionValidator
 
 User = get_user_model()
 
@@ -10,6 +11,7 @@ class Video(models.Model):
     rate = models.PositiveIntegerField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateField()
+    file = models.FileField(validators=[FileExtensionValidator(allowed_extensions=['gif','png','jpg'])])
 
     TYPES_VIDEOS = [
         ('Film', 'Film'),

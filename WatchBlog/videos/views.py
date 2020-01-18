@@ -6,14 +6,12 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import VideoModelForm, UserForm, LoginForm
 from .models import Video
+import time
 
 # Create your views here.
 def index(request):
     template = loader.get_template('videos/index.html')
-    # user = authenticate(username='Lou', password='admin')
-    context = {'user': request.user}
-    print(request.user.is_authenticated)
-    print(request.user)
+    context = {}
     return HttpResponse(template.render(context, request))
 
 def list(request):
@@ -25,11 +23,11 @@ def list(request):
 
 def create(request):
     if request.method == 'POST':
-        form = VideoModelForm(request.POST)
+        form = VideoModelForm(request.POST, request.FILES)
 
         if form.is_valid():
             form.save()
-            
+
             return HttpResponseRedirect(reverse('list'))
     else:
         form = VideoModelForm()
@@ -96,7 +94,7 @@ def edit(request, video_id):
         raise Http404
 
     if request.method == 'POST':
-        form = VideoModelForm(request.POST, instance=video)
+        form = VideoModelForm(request.POST, request.FILES, instance=video)
 
         if form.is_valid():
             form.save()
