@@ -9,8 +9,15 @@
 {% if request.user.is_authenticated %}
     <form method="POST">    
         {% csrf_token %}
-        <p>Delete this video ? {{ video.title }}</p>
-        <input type="submit" value="Submit">
+        <div class="card" style="width: 50%;margin: auto;">
+            <div class="card-body">
+                <h5 class="card-title">{{ video.title }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Do you want to delete this video ?</h6>
+                <p class="card-text">{{ video.description }}</p>
+                <input type="submit" class="btn btn-primary" value="Delete">
+                <a href="{% url 'list' %}" class="btn btn-warning">Back</a>
+            </div>
+        </div>
     </form>
     {% else %}
         {% include "videos/notconnected.html" %}

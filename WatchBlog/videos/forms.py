@@ -8,7 +8,7 @@ class VideoModelForm(forms.ModelForm):
         fields = '__all__'
         widgets = {
             'title': forms.TextInput(attrs={'placeholder': 'Title','class':'form-control'}),
-            'description': forms.TextInput(attrs={'placeholder': 'Description','class':'form-control'}),
+            'description': forms.Textarea(attrs={'placeholder': 'Description','class':'form-control'}),
             'rate': forms.TextInput(attrs={'placeholder': 'Rate','class':'form-control'}),
             'date': forms.DateInput(attrs={'placeholder': 'Date','class':'form-control', 'type':'date'}),
             'type_video': forms.Select(attrs={'placeholder': 'Type','class':'form-control'}),
