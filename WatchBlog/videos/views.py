@@ -4,7 +4,7 @@ from django.template import loader
 from django.urls import reverse
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
-from .forms import VideoModelForm, UserModelForm, LoginForm
+from .forms import VideoModelForm, UserForm, LoginForm
 from .models import Video
 
 # Create your views here.
@@ -38,7 +38,7 @@ def create(request):
 
 def signin(request):
     if request.method == 'POST':
-        form = UserModelForm(request.POST)
+        form = UserForm(request.POST)
 
         if form.is_valid():
             username = form.cleaned_data['username']
@@ -54,7 +54,7 @@ def signin(request):
             return HttpResponseRedirect(reverse('login'))
 
     else:
-        form = UserModelForm()
+        form = UserForm()
     
     return render(request, 'videos/signin.html', {'form':form})
 
