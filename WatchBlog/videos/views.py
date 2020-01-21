@@ -26,6 +26,7 @@ def create(request):
         form = VideoModelForm(request.POST, request.FILES)
 
         if form.is_valid():
+            rate = form.cleaned_data['rate']
             form.save()
 
             return HttpResponseRedirect(reverse('list'))
