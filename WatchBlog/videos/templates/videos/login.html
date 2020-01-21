@@ -5,10 +5,12 @@
 {% endblock %}
 
 {% block content %}
+<div class="card" style="width: 90%;margin: auto;border: 0;">
     <form method="POST">
         {% csrf_token %}
         {{ form }}
         <br>
         <input type="submit" class="btn btn-primary" value="Submit">
     </form>
+</div>
 {% endblock %}

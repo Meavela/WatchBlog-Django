@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block content %}
+<div class="card" style="width: 90%;margin: auto;border: 0;">
     {% if request.user.is_authenticated %}
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
@@ -26,4 +27,5 @@
     {% else %}
         {% include "videos/notconnected.html" %}
     {% endif %}
+</div>
 {% endblock %}
