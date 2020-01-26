@@ -28,6 +28,7 @@ class VideoModelForm(forms.ModelForm):
 
         return description
 
+
     class Meta:
         model = Video
         fields = '__all__'
@@ -43,11 +44,20 @@ class VideoModelForm(forms.ModelForm):
         }
 
 class UserForm(forms.Form):
+    
+    def clean_repassword(self):
+        password = self.cleaned_data['password']
+        repassword = self.cleaned_data['repassword']
+
+        if password != repassword:
+            raise forms.ValidationError('Passwords fields have to be the same !')
+
     username = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Username','class':'form-control'}))
     email = forms.CharField(widget=forms.EmailInput(attrs={'placeholder': 'Email','class':'form-control'}))
     first_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'First Name','class':'form-control'}))
     last_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Last Name','class':'form-control'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Password','class':'form-control'}))
+    repassword = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Same password as before','class':'form-control'}))
 
 class LoginForm(forms.Form):
     username = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Username','class':'form-control'}))

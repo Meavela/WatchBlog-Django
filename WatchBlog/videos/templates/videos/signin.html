@@ -6,9 +6,19 @@
 
 {% block content %}
 <div class="card" style="width: 90%;margin: auto;border: 0;">
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form }}
+        {% for field in form %}
+            <div class="fieldWrapper">
+                {{ field.label_tag }}
+                {{ field }}
+                {% for error in field.errors %}
+                    <div style="color: red;text-align: center;">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
         <br>
         <input type="submit" class="btn btn-primary" value="Submit">
     </form>
