@@ -18,8 +18,10 @@
             <h6 class="card-subtitle mb-2 text-muted">{% fontawesome_icon 'list' %} {{ video.category_video }}</h6>
             <p class="card-text">{{ video.description }}</p>
             <div>
-                <a href="{% url 'edit' video_id=video.id %}" class="btn btn-primary">Edit</a>
-                <a href="{% url 'delete' video_id=video.id %}" class="btn btn-danger">Delete</a>
+                {% if request.user == video.user %}
+                    <a href="{% url 'edit' video_id=video.id %}" class="btn btn-primary">Edit</a>
+                    <a href="{% url 'delete' video_id=video.id %}" class="btn btn-danger">Delete</a>
+                {% endif %}
                 <a href="{% url 'list' %}" class="btn btn-warning">Back</a>
             </div>
         </div>

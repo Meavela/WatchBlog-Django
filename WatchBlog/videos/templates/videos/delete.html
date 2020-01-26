@@ -6,7 +6,7 @@
 
 {% block content %}
 
-{% if request.user.is_authenticated %}
+{% if request.user == video.user %}
     <form method="POST">    
         {% csrf_token %}
         <div class="card" style="width: 50%;margin: auto;">
@@ -20,6 +20,6 @@
         </div>
     </form>
     {% else %}
-        {% include "videos/notconnected.html" %}
+        {% include "videos/notgooduser.html" %}
     {% endif %}
 {% endblock %}

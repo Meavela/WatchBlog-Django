@@ -28,10 +28,12 @@
                 <td>{{ video.types_videos }}</td>
                 <td>
                     <a href="{% url 'detail' video_id=video.id %}">Detail </a>
-                    |
-                    <a href="{% url 'edit' video_id=video.id %}">Edit </a>
-                    |
-                    <a href="{% url 'delete' video_id=video.id %}">Delete</a>
+                    {% if request.user == video.user %}
+                        |
+                        <a href="{% url 'edit' video_id=video.id %}">Edit </a>
+                        |
+                        <a href="{% url 'delete' video_id=video.id %}">Delete</a>
+                    {% endif %}
                 </td>
             </tr>
         {% endfor %}

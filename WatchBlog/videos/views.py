@@ -104,7 +104,7 @@ def edit(request, video_id):
     else:
         form = VideoModelForm(instance=video)
     
-    return render(request, 'videos/edit.html', {'form':form})
+    return render(request, 'videos/edit.html', {'form':form, 'video':video})
 
 def delete(request, video_id):
     try:

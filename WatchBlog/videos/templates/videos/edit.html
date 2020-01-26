@@ -6,7 +6,7 @@
 
 {% block content %}
 <div class="card" style="width: 90%;margin: auto;border: 0;">
-    {% if request.user.is_authenticated %}
+    {% if request.user == video.user %}
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {% for field in form %}
@@ -25,7 +25,7 @@
             <a href="{% url 'list' %}" class="btn btn-warning">Back</a>
         </form>
     {% else %}
-        {% include "videos/notconnected.html" %}
+        {% include "videos/notgooduser.html" %}
     {% endif %}
 </div>
 {% endblock %}
